@@ -5,34 +5,29 @@ pipeline {
         githubPush()
     }
 
-    environment {
-        NETWORK_NAME = "wanderlust"
-    }
-
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Clean Old Containers & Network') {
+        stage('Clean Old Containers') {
             steps {
-                echo "Cleaning old containers & network..."
                 sh '''
+                docker compose down -v || true
                 docker rm -f backend frontend mongodb nginx || true
-                docker network rm $NETWORK_NAME || true
                 docker system prune -af || true
                 '''
             }
         }
 
-        stage('Build & Deploy') {
+        stage('Deploy with Docker Compose') {
             steps {
-                echo "Building and deploying containers..."
                 sh '''
-                docker network create $NETWORK_NAME || true
-                docker compose up -d --build
+                docker compose pull
+                docker compose up -d
                 '''
             }
         }
