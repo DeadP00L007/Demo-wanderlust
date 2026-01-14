@@ -50,7 +50,7 @@ services:
 networks:
   wanderlust_0:
     name: "wanderlust"
-    external: bridge
+    driver: bridge
 
 volumes:
   mongo_data:
