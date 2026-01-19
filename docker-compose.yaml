@@ -1,8 +1,8 @@
 services:
   mongodb:
     container_name: mongodb
-    image: "dcx369/mongodb:latest"
-    command: ["bin/bash","-c","mongoimport --db wanderlust --collection posts --file sample_posts.json --jsonArray"]
+    image: mongo:7
+    #command: ["bin/bash","-c","mongoimport --db wanderlust --collection posts --file sample_posts.json --jsonArray"]
     ports:
       - "27017:27017"
     volumes:
