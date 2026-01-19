@@ -30,7 +30,7 @@ services:
 
   frontend:
     container_name: frontend
-    build
+    build:
       context: ./frontend
     image: "dcx369/wanderlust-frontend"
     environment:
