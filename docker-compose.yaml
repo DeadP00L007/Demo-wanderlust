@@ -42,7 +42,7 @@ services:
     ports:
       - "9090:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx.conf:/etc/nginx.conf:ro
     networks:
       - wanderlust_0
     restart: always
